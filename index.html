@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Trixs Marketing Agency — The Right Tricks For Growth. Medical digital marketing for doctors, clinics & healthcare brands in Egypt.">
+<title>Trixs Marketing Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0B0B0D;
+    --dark: #16181D;
+    --cyan: #00D1D1;
+    --blue: #2D7FF9;
+    --white: #F0F2F5;
+    --gray: #8A8F9D;
+    --border: rgba(0,209,209,0.12);
+    --glow-cyan: 0 0 40px rgba(0,209,209,0.18);
+    --glow-blue: 0 0 40px rgba(45,127,249,0.18);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor {
+    position: fixed; top: 0; left: 0;
+    width: 10px; height: 10px;
+    background: var(--cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(0,209,209,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%,-50%);
+    transition: transform 0.18s ease, width 0.3s, height 0.3s;
+  }
+  .cursor.hover { width: 18px; height: 18px; opacity: 0.8; }
+  .cursor-ring.hover { width: 52px; height: 52px; border-color: var(--cyan); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 4px; }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1; opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 20px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(11,11,13,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 5%;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .navbar-logo-img {
+    width: 118px !important;
+    height: auto !important;
+    max-width: 118px !important;
+    max-height: 54px !important;
+    object-fit: contain !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 2;
+  }
+  .footer-logo-img {
+    width: 120px !important;
+    height: auto !important;
+    max-width: 120px !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Readex Pro', sans-serif;
+    font-weight: 800; font-size: 18px;
+    color: #0B0B0D;
+    box-shadow: 0 0 20px rgba(0,209,209,0.35);
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-family: 'Readex Pro', sans-serif;
+    font-weight: 800; font-size: 20px;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .logo-text span { color: var(--cyan); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 30px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--cyan);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    color: #0B0B0D !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(0,209,209,0.25);
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(0,209,209,0.4); color: #0B0B0D !important; }
+  .nav-cta::after { display: none !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: none; padding: 5px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(11,11,13,0.97);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center; justify-content: center; gap: 36px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--white); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .mobile-menu a:hover { color: var(--cyan); }
+
+  /* ── SECTION COMMON ── */
+  section { position: relative; z-index: 2; scroll-margin-top: 95px; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--cyan);
+  }
+
+  .section-title {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-sub {
+    font-size: 17px; color: var(--gray);
+    max-width: 520px; line-height: 1.65;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 5% 80px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,209,209,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,209,209,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-glow-1 {
+    position: absolute; top: -20%; left: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,209,209,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float1 8s ease-in-out infinite;
+  }
+  .hero-glow-2 {
+    position: absolute; bottom: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(45,127,249,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float2 10s ease-in-out infinite;
+  }
+  .hero-glow-3 {
+    position: absolute; top: 40%; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,209,209,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  /* Transparent hero logo watermark */
+  .hero-abstract {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(34vw, 520px);
+    height: min(34vw, 520px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+  }
+  .hero-watermark-logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.075;
+    filter: grayscale(1) brightness(1.4) drop-shadow(0 0 45px rgba(0,209,209,0.18));
+    mix-blend-mode: screen;
+    animation: watermark-float 8s ease-in-out infinite;
+  }
+  @keyframes watermark-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.02); }
+  }
+
+  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-30px)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,30px)} }
+  @keyframes pulse { 0%,100%{transform:translateX(-50%) scale(1);opacity:0.06} 50%{transform:translateX(-50%) scale(1.15);opacity:0.1} }
+  @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 720px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,209,209,0.08);
+    border: 1px solid rgba(0,209,209,0.2);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 12px; font-weight: 500;
+    color: var(--cyan);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--cyan);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero-title {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: clamp(48px, 6.5vw, 88px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 1.8vw, 20px);
+    color: var(--gray);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 44px;
+    font-weight: 300;
+  }
+
+  .hero-btns {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    color: #0B0B0D;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-weight: 700; font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(0,209,209,0.3);
+    border: none; cursor: none;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(0,209,209,0.5);
+  }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.04);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-weight: 600; font-size: 15px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+    cursor: none;
+  }
+  .btn-secondary:hover {
+    background: rgba(0,209,209,0.08);
+    border-color: rgba(0,209,209,0.3);
+    transform: translateY(-3px);
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0.5;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .hero-scroll span { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--cyan), transparent);
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ── WHY TRIXS ── */
+  #why {
+    padding: 120px 5%;
+    background: var(--dark);
+  }
+
+  .why-header { text-align: center; margin-bottom: 70px; }
+  .why-header .section-label {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .why-header .section-label::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
+  .why-header .section-sub { margin: 0 auto; text-align: center; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .why-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 32px;
+    position: relative; overflow: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+  }
+  .why-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,209,209,0.06), transparent);
+    opacity: 0; transition: opacity 0.4s;
+    border-radius: 20px;
+  }
+  .why-card:hover { border-color: rgba(0,209,209,0.35); transform: translateY(-6px); box-shadow: var(--glow-cyan); }
+  .why-card:hover::before { opacity: 1; }
+
+  .why-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, rgba(0,209,209,0.15), rgba(45,127,249,0.15));
+    border: 1px solid rgba(0,209,209,0.2);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 22px;
+  }
+
+  .why-card h3 {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .why-card p { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+  /* ── SERVICES ── */
+  #services {
+    padding: 145px clamp(24px, 5vw, 96px) 120px;
+    background: var(--black);
+    scroll-margin-top: 95px;
+  }
+
+  .services-header {
+    width: min(100%, 1240px);
+    margin: 0 auto 62px;
+    text-align: center;
+  }
+
+  .services-header .section-label {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .services-header .section-label::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  .services-header .section-sub {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    gap: 24px;
+    width: min(100%, 1240px);
+    margin: 0 auto;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .service-card {
+    background: rgba(22,24,29,0.8);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 34px 28px;
+    min-height: 270px;
+    position: relative; overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { border-color: rgba(0,209,209,0.2); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-num {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--cyan);
+    opacity: 0.6;
+    margin-bottom: 20px;
+  }
+
+  .service-icon-wrap {
+    width: 54px; height: 54px;
+    background: linear-gradient(135deg, rgba(0,209,209,0.1), rgba(45,127,249,0.1));
+    border: 1px solid rgba(0,209,209,0.15);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+  }
+  .service-card:hover .service-icon-wrap {
+    background: linear-gradient(135deg, rgba(0,209,209,0.2), rgba(45,127,249,0.2));
+    box-shadow: 0 0 20px rgba(0,209,209,0.2);
+  }
+
+  .service-card h3 {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 19px; font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .service-card p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+  .service-arrow {
+    margin-top: 22px;
+    color: var(--cyan);
+    font-size: 18px;
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+  .service-card:hover .service-arrow { transform: translateX(6px); }
+
+  /* ── STATS ── */
+  #stats {
+    padding: 100px 5%;
+    background: var(--dark);
+    position: relative; overflow: hidden;
+  }
+
+  .stats-glow {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,209,209,0.08) 0%, transparent 70%);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    max-width: 900px; margin: 0 auto;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 24px; overflow: hidden;
+  }
+
+  .stat-item {
+    background: rgba(22,24,29,0.95);
+    padding: 52px 36px;
+    text-align: center;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .stat-item:hover { background: rgba(0,209,209,0.04); }
+
+  .stat-num {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-size: 13px; color: var(--gray);
+    font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── WHO WE WORK WITH ── */
+  #clients {
+    padding: 120px 5%;
+    background: var(--black);
+  }
+
+  .clients-header { text-align: center; margin-bottom: 70px; }
+  .clients-header .section-label {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .clients-header .section-label::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--cyan);
+  }
+  .clients-header .section-sub { margin: 0 auto; text-align: center; }
+
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+    max-width: 1000px; margin: 0 auto;
+  }
+
+  .client-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 20px;
+    text-align: center;
+    transition: all 0.35s ease;
+    position: relative; overflow: hidden;
+  }
+  .client-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,209,209,0.08), transparent);
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .client-card:hover { border-color: rgba(0,209,209,0.3); transform: translateY(-5px); box-shadow: var(--glow-cyan); }
+  .client-card:hover::before { opacity: 1; }
+
+  .client-emoji { font-size: 34px; margin-bottom: 14px; display: block; }
+  .client-card h4 {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--white);
+  }
+
+  /* ── CONSULTATION ── */
+  #consult {
+    padding: 120px 5%;
+    background: var(--black);
+    position: relative; overflow: hidden;
+  }
+
+  .consult-glow {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,209,209,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .consult-inner {
+    max-width: 900px; margin: 0 auto;
+    background: rgba(22,24,29,0.7);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 70px 60px;
+    position: relative;
+    backdrop-filter: blur(20px);
+    text-align: center;
+  }
+
+  .consult-inner::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+
+  .consult-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 50px;
+    text-align: left;
+  }
+
+  .form-group {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .form-group.full { grid-column: span 2; }
+
+  .form-group label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: var(--white);
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 15px;
+    transition: all 0.3s;
+    outline: none;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(0,209,209,0.4);
+    background: rgba(0,209,209,0.04);
+    box-shadow: 0 0 20px rgba(0,209,209,0.08);
+  }
+  .form-group select option { background: #16181D; color: var(--white); }
+
+  .form-submit {
+    grid-column: span 2;
+    display: flex; justify-content: center;
+    margin-top: 8px;
+  }
+
+  .btn-submit {
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    color: #0B0B0D;
+    border: none;
+    padding: 16px 48px;
+    border-radius: 10px;
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 16px; font-weight: 700;
+    cursor: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(0,209,209,0.3);
+  }
+  .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(0,209,209,0.5); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 70px 5% 40px;
+    position: relative; z-index: 2;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 60px;
+  }
+
+  .footer-brand p {
+    font-size: 14px; color: var(--gray);
+    margin-top: 16px; line-height: 1.7;
+    max-width: 260px;
+  }
+
+  .footer-col h5 {
+    font-family: 'Readex Pro', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    font-size: 14px; color: var(--gray);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .footer-col ul a:hover { color: var(--cyan); }
+
+  .footer-contact a {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--gray);
+    text-decoration: none; transition: color 0.3s;
+    margin-bottom: 10px;
+  }
+  .footer-contact a:hover { color: var(--cyan); }
+  .footer-contact a span { font-size: 16px; }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 30px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-bottom p { font-size: 13px; color: var(--gray); }
+  .footer-bottom span { color: var(--cyan); }
+
+  .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .social-link {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--gray);
+    transition: fill 0.3s, transform 0.3s;
+  }
+  .social-link:hover {
+    background: rgba(0,209,209,0.1);
+    border-color: rgba(0,209,209,0.3);
+    transform: translateY(-3px);
+  }
+  .social-link:hover svg {
+    fill: var(--cyan);
+    transform: scale(1.08);
+  }
+
+  .whatsapp-float {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none;
+    z-index: 900;
+    transition: all 0.3s;
+    animation: wa-pulse 3s ease-in-out infinite;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 4px 30px rgba(37,211,102,0.6); }
+  @keyframes wa-pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)} 50%{box-shadow:0 4px 35px rgba(37,211,102,0.6),0 0 0 10px rgba(37,211,102,0.08)} }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+  .delay-6 { transition-delay: 0.6s; }
+  .delay-7 { transition-delay: 0.7s; }
+  .delay-8 { transition-delay: 0.8s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1200px) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      width: min(100%, 760px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero-abstract { display: none; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-cta { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .consult-inner { padding: 50px 30px; }
+    .consult-form { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
+    .form-submit { grid-column: span 1; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 44px; }
+    #services { padding-left: 20px; padding-right: 20px; }
+    .services-grid { grid-template-columns: 1fr; width: 100%; }
+    .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .whatsapp-float { bottom: 20px; right: 20px; }
+  }
+
+  /* ── TYPED CURSOR ── */
+  .typed-cursor {
+    display: inline-block;
+    width: 3px; height: 0.85em;
+    background: var(--cyan);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* ── DECORATIVE LINE ── */
+  .deco-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--blue), transparent);
+    opacity: 0.3;
+    margin: 0 5%;
+  }
+
+  /* ── HERO CENTER FINAL FIX ── */
+  #hero {
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 120px 5% 80px !important;
+  }
+
+  .hero-content {
+    max-width: 980px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-title {
+    font-size: clamp(64px, 8.5vw, 128px) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.055em !important;
+    margin-bottom: 30px !important;
+  }
+
+  .hero-sub {
+    max-width: 720px !important;
+    font-size: clamp(18px, 2vw, 24px) !important;
+    line-height: 1.65 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 42px !important;
+  }
+
+  .hero-badge {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-btns {
+    justify-content: center !important;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 17px 34px !important;
+    font-size: 16px !important;
+  }
+
+  .hero-abstract {
+    right: 6% !important;
+    width: min(520px, 36vw) !important;
+    height: min(520px, 36vw) !important;
+    opacity: 0.07 !important;
+  }
+
+  @media (max-width: 900px) {
+    .hero-title {
+      font-size: clamp(48px, 13vw, 82px) !important;
+    }
+
+    .hero-sub {
+      font-size: 17px !important;
+    }
+
+    .hero-abstract {
+      display: none !important;
+    }
+  }
+
+
+  /* ── SELECTED WORKS ── */
+  #selected-works {
+    padding: 110px 5% 120px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #selected-works::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 20%, rgba(0,209,209,0.08), transparent 26%),
+      radial-gradient(circle at 80% 15%, rgba(45,127,249,0.07), transparent 26%);
+    pointer-events: none;
+  }
+
+  .selected-works-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1680px;
+    margin: 0 auto;
+  }
+
+  .selected-works-title {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 56px;
+    font-family: 'Readex Pro', sans-serif;
+    font-size: clamp(34px, 4vw, 58px);
+    line-height: 1;
+    letter-spacing: -0.045em;
+    color: var(--white);
+    text-align: center;
+  }
+
+  .selected-works-title .works-word {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.06em;
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .work-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .work-card {
+    position: relative;
+    min-height: 560px;
+    border-radius: 14px;
+    overflow: hidden;
+    background:
+      linear-gradient(to bottom, rgba(255,255,255,0.035), rgba(255,255,255,0.015)),
+      #101010;
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 24px 90px rgba(0,0,0,0.42);
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .work-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0,209,209,0.32);
+    box-shadow: 0 34px 110px rgba(0,0,0,0.62), 0 0 42px rgba(0,209,209,0.14);
+  }
+
+  .work-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 35% 38%, rgba(0,209,209,0.10), transparent 30%),
+      linear-gradient(to top, rgba(10,10,10,0.98), rgba(10,10,10,0.20) 55%, rgba(10,10,10,0.75));
+    z-index: 1;
+  }
+
+  .work-card:nth-child(2)::before {
+    background:
+      radial-gradient(circle at 65% 30%, rgba(45,127,249,0.12), transparent 32%),
+      linear-gradient(to top, rgba(10,10,10,0.98), rgba(10,10,10,0.22) 55%, rgba(10,10,10,0.75));
+  }
+
+  .work-card:nth-child(3)::before {
+    background:
+      radial-gradient(circle at 55% 35%, rgba(0,209,209,0.10), transparent 30%),
+      radial-gradient(circle at 78% 18%, rgba(45,127,249,0.11), transparent 30%),
+      linear-gradient(to top, rgba(10,10,10,0.98), rgba(10,10,10,0.22) 55%, rgba(10,10,10,0.75));
+  }
+
+  .work-card-number {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    z-index: 2;
+    font-size: clamp(90px, 9vw, 160px);
+    line-height: 0.85;
+    font-weight: 800;
+    letter-spacing: -0.08em;
+    color: rgba(255,255,255,0.035);
+  }
+
+  .work-card-kicker {
+    position: absolute;
+    top: 34px;
+    left: 34px;
+    z-index: 3;
+    color: rgba(240,242,245,0.42);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .work-card-content {
+    position: absolute;
+    left: 34px;
+    right: 34px;
+    bottom: 32px;
+    z-index: 3;
+  }
+
+  .work-card h3 {
+    font-size: clamp(28px, 2.25vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+
+  .work-card p {
+    color: rgba(240,242,245,0.58);
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 430px;
+    margin-bottom: 20px;
+  }
+
+  .work-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: 0.3s ease;
+  }
+
+  .work-card:hover .work-card-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .work-card-cta span {
+    transition: transform 0.3s ease;
+  }
+
+  .work-card:hover .work-card-cta span {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 1100px) {
+    .work-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .work-card {
+      min-height: 390px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #selected-works {
+      padding: 78px 5% 90px;
+    }
+
+    .selected-works-title {
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 34px;
+    }
+
+    .work-card {
+      min-height: 360px;
+    }
+
+    .work-card-kicker,
+    .work-card-content {
+      left: 24px;
+      right: 24px;
+    }
+
+    .work-card-kicker {
+      top: 26px;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/201233305201" class="whatsapp-float" target="_blank" title="WhatsApp Us">💬</a>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo" aria-label="Trixs Marketing Agency">
+    <img
+      src="trixs-logo.png"
+      alt="Trixs Marketing Agency"
+      class="navbar-logo-img"
+    >
+  </a>
+  <ul class="nav-links">
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#stats">Results</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="#consult">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/201233305201" class="nav-cta">Contact Us</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#why" onclick="closeMobile()">Why Us</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#stats" onclick="closeMobile()">Results</a>
+  <a href="portfolio.html" onclick="closeMobile()">Portfolio</a>
+  <a href="#consult" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-glow-3"></div>
+  </div>
+
+  <!-- Transparent logo watermark -->
+  <div class="hero-abstract" aria-hidden="true">
+    <img
+      src="trixs-logo.png"
+      alt=""
+      class="hero-watermark-logo"
+    >
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <div class="hero-badge-dot"></div>
+      Medical Marketing Agency · Ismailia, Egypt
+    </div>
+
+    <h1 class="hero-title reveal delay-1">
+      THE RIGHT<br>
+      TRICKS FOR<br>
+      <span class="gradient-text">GROWTH</span>
+    </h1>
+
+    <p class="hero-sub reveal delay-2">
+      Helping Doctors &amp; Medical Brands Scale Through Smart Digital Marketing
+    </p>
+
+    <div class="hero-btns reveal delay-3">
+      <a href="https://wa.me/201233305201" class="btn-primary">
+        ✦ Message Us
+      </a>
+      <a href="portfolio.html" class="btn-secondary">
+        View Portfolio
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="deco-line"></div>
+
+<!-- ══ WHY TRIXS ══ -->
+<section id="why">
+  <div class="why-header">
+    <div class="section-label reveal">Our Edge</div>
+    <h2 class="section-title reveal delay-1">Why <span class="gradient-text">Trixs</span>?</h2>
+    <p class="section-sub reveal delay-2">We're not a generic agency. We speak healthcare — and we know exactly what makes patients trust a brand.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card reveal delay-1">
+      <div class="why-icon">🏥</div>
+      <h3>Medical Marketing Expertise</h3>
+      <p>We understand healthcare audiences, patient psychology, and the compliance nuances that make medical marketing unique.</p>
+    </div>
+    <div class="why-card reveal delay-2">
+      <div class="why-icon">📈</div>
+      <h3>Growth-Focused Strategies</h3>
+      <p>Every campaign we build is engineered for measurable ROI — more appointments, more leads, more revenue for your practice.</p>
+    </div>
+    <div class="why-card reveal delay-3">
+      <div class="why-icon">💎</div>
+      <h3>Creative Premium Branding</h3>
+      <p>Modern, elegant visual identities that position your clinic as the most trusted choice in your specialty.</p>
+    </div>
+    <div class="why-card reveal delay-4">
+      <div class="why-icon">⚡</div>
+      <h3>Full-Service Solutions</h3>
+      <p>From strategy to execution — social media, ads, design, content, and web — everything under one roof, seamlessly.</p>
+    </div>
+  </div>
+</section>
+
+<div class="deco-line"></div>
+
+<!-- ══ SELECTED WORKS ══ -->
+<section id="selected-works">
+  <div class="selected-works-inner">
+    <h2 class="selected-works-title">
+      <span>Selected</span>
+      <span class="works-word">Works</span>
+    </h2>
+
+    <div class="work-cards">
+      <a class="work-card" href="portfolio.html?category=social-media">
+        <div class="work-card-number">01</div>
+        <div class="work-card-kicker">Campaigns • Feeds • Strategy</div>
+        <div class="work-card-content">
+          <h3>Social Media<br>Designs</h3>
+          <p>Premium medical social media visuals, creative campaign concepts, and clean feed layouts built for healthcare brands.</p>
+          <div class="work-card-cta">View Projects <span>→</span></div>
+        </div>
+      </a>
+
+      <a class="work-card" href="portfolio.html?category=branding">
+        <div class="work-card-number">02</div>
+        <div class="work-card-kicker">Identity • Systems • Direction</div>
+        <div class="work-card-content">
+          <h3>Branding</h3>
+          <p>Logo directions, color systems, identity applications, and premium medical brand visuals with consistent guidelines.</p>
+          <div class="work-card-cta">View Projects <span>→</span></div>
+        </div>
+      </a>
+
+      <a class="work-card" href="portfolio.html?category=videos">
+        <div class="work-card-number">03</div>
+        <div class="work-card-kicker">Reels • Motion • Editing</div>
+        <div class="work-card-content">
+          <h3>Videos</h3>
+          <p>Cinematic reels, campaign videos, motion ideas, and short-form edits designed for doctors, clinics, and medical brands.</p>
+          <div class="work-card-cta">View Projects <span>→</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="deco-line"></div>
+
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="services-header">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal delay-1">Our <span class="gradient-text">Services</span></h2>
+    <p class="section-sub reveal delay-2">A complete digital ecosystem built specifically for healthcare professionals and medical brands.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal delay-1">
+      <div class="service-num">01</div>
+      <div class="service-icon-wrap">📱</div>
+      <h3>Medical Social Media Management</h3>
+      <p>Strategic content, community management, and growth for Instagram, Facebook &amp; TikTok tailored to healthcare audiences.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal delay-2">
+      <div class="service-num">02</div>
+      <div class="service-icon-wrap">🎯</div>
+      <h3>Paid Ads (Meta &amp; Google)</h3>
+      <p>High-converting ad campaigns that bring patients to your door — optimized for cost-per-lead in the medical space.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal delay-3">
+      <div class="service-num">03</div>
+      <div class="service-icon-wrap">✦</div>
+      <h3>Branding &amp; Identity Design</h3>
+      <p>Premium logos, brand systems, and visual identities that convey trust, professionalism, and authority.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal delay-4">
+      <div class="service-num">04</div>
+      <div class="service-icon-wrap">🌐</div>
+      <h3>Website Design for Clinics</h3>
+      <p>Fast, beautiful, patient-converting websites designed specifically for clinics, medical centers &amp; specialists.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal delay-5">
+      <div class="service-num">05</div>
+      <div class="service-icon-wrap">✍️</div>
+      <h3>Medical Content Creation</h3>
+      <p>Educational, trust-building content — posts, articles, scripts, and captions written by medical marketing experts.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal delay-6">
+      <div class="service-num">06</div>
+      <div class="service-icon-wrap">🎬</div>
+      <h3>Video / Reels Editing</h3>
+      <p>Cinematic, engaging short-form video content that grows your reach and builds your personal brand as a physician.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal delay-7">
+      <div class="service-num">07</div>
+      <div class="service-icon-wrap">💊</div>
+      <h3>Patient Lead Generation</h3>
+      <p>End-to-end funnels that capture, nurture, and convert potential patients into booked appointments.</p>
+      <div class="service-arrow">→</div>
+    </div>
+    <div class="service-card reveal delay-8">
+      <div class="service-num">08</div>
+      <div class="service-icon-wrap">⭐</div>
+      <h3>Reputation Management</h3>
+      <p>Build, protect, and amplify your online reputation — reviews, responses, and brand authority at scale.</p>
+      <div class="service-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<div class="deco-line"></div>
+
+<!-- ══ STATS ══ -->
+<section id="stats">
+  <div class="stats-glow"></div>
+
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="20" data-suffix="+">0</div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+    <div class="stat-item reveal delay-1">
+      <div class="stat-num" data-target="100" data-suffix="+">0</div>
+      <div class="stat-label">Campaigns Run</div>
+    </div>
+    <div class="stat-item reveal delay-2">
+      <div class="stat-num" data-target="1" data-suffix="M+" data-prefix="">0</div>
+      <div class="stat-label">Total Reach</div>
+    </div>
+    <div class="stat-item reveal delay-3">
+      <div class="stat-num" data-target="5000" data-suffix="+">0</div>
+      <div class="stat-label">Leads Generated</div>
+    </div>
+  </div>
+</section>
+
+<div class="deco-line"></div>
+
+<!-- ══ WHO WE WORK WITH ══ -->
+<section id="clients">
+  <div class="clients-header">
+    <div class="section-label reveal">Our Clients</div>
+    <h2 class="section-title reveal delay-1">Who We <span class="gradient-text">Work With</span></h2>
+    <p class="section-sub reveal delay-2">From solo practitioners to large medical centers — we grow healthcare brands of every size.</p>
+  </div>
+
+  <div class="clients-grid">
+    <div class="client-card reveal delay-1">
+      <span class="client-emoji">👨‍⚕️</span>
+      <h4>Doctors</h4>
+    </div>
+    <div class="client-card reveal delay-2">
+      <span class="client-emoji">🦷</span>
+      <h4>Dental Clinics</h4>
+    </div>
+    <div class="client-card reveal delay-3">
+      <span class="client-emoji">✨</span>
+      <h4>Dermatology Clinics</h4>
+    </div>
+    <div class="client-card reveal delay-4">
+      <span class="client-emoji">🏥</span>
+      <h4>Medical Centers</h4>
+    </div>
+    <div class="client-card reveal delay-5">
+      <span class="client-emoji">💊</span>
+      <h4>Pharmacies</h4>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONSULTATION ══ -->
+<section id="consult">
+  <div class="consult-glow"></div>
+
+  <div class="consult-inner reveal">
+
+
+    <h2 class="section-title" style="margin-bottom:14px;">Let's Grow Your <span class="gradient-text">Practice</span></h2>
+    <p class="section-sub" style="margin:0 auto;text-align:center;">Book your free strategy session and discover exactly how Trixs can help you attract more patients.</p>
+
+    <form class="consult-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Dr. Ahmed Hassan" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+20 12 33305201" required>
+      </div>
+      <div class="form-group">
+        <label>Medical Specialty</label>
+        <select>
+          <option value="" disabled selected>Select your specialty</option>
+          <option>General Practitioner</option>
+          <option>Dentist / Dental Clinic</option>
+          <option>Dermatologist</option>
+          <option>Pediatrician</option>
+          <option>Orthopedic Surgeon</option>
+          <option>Cardiologist</option>
+          <option>Ophthalmologist</option>
+          <option>Medical Center / Hospital</option>
+          <option>Pharmacy</option>
+          <option>Healthcare Startup</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Clinic / Center Name</label>
+        <input type="text" placeholder="Your clinic name">
+      </div>
+      <div class="form-group full">
+        <label>Message (optional)</label>
+        <textarea rows="4" placeholder="Tell us about your goals, current challenges, or anything we should know..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-submit">✦ Get Free Consultation</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo footer-logo" style="margin-bottom:4px;" aria-label="Trixs Marketing Agency">
+        <img
+          src="trixs-logo.png"
+          alt="Trixs Marketing Agency"
+          class="footer-logo-img"
+        >
+      </a>
+      <p>The Right Tricks For Growth. Medical marketing agency helping healthcare brands scale through strategy, creativity, and data.</p>
+      <div class="social-links" style="margin-top:20px;">
+        <!-- Change the href value in each link to your real social media link -->
+        <a href="https://www.facebook.com/your-page" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15.12 8.42h2.06V5.18c-.99-.1-1.98-.15-2.98-.15-2.95 0-4.97 1.8-4.97 5.05v2.84H5.9v3.62h3.33V24h3.98v-7.46h3.3l.52-3.62h-3.82v-2.48c0-1.05.28-2.02 1.91-2.02Z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/your-page" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5Zm8.75 2.05a1.45 1.45 0 1 1 0 2.9 1.45 1.45 0 0 1 0-2.9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+          </svg>
+        </a>
+        <a href="https://wa.me/201233305201" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .15 5.35.15 11.92c0 2.1.55 4.15 1.6 5.96L.05 24l6.28-1.65a11.9 11.9 0 0 0 5.74 1.46h.01C18.65 23.81 24 18.46 24 11.89c0-3.18-1.24-6.17-3.48-8.41ZM12.08 21.8h-.01a9.88 9.88 0 0 1-5.04-1.38l-.36-.21-3.72.98.99-3.63-.23-.37a9.87 9.87 0 0 1-1.52-5.27C2.19 6.46 6.63 2.02 12.09 2.02a9.85 9.85 0 0 1 7 2.9 9.83 9.83 0 0 1 2.9 6.98c0 5.46-4.45 9.9-9.91 9.9Zm5.43-7.41c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.69.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@your-page" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16.7 1.9c.45 3.03 2.15 4.84 5.04 5.03v3.4c-1.68.16-3.15-.38-4.94-1.42v6.36c0 8.08-8.8 10.6-12.33 4.81-2.27-3.72-.88-10.25 6.4-10.51v3.58c-.55.09-1.15.23-1.68.42-1.61.54-2.52 1.56-2.27 3.35.48 3.43 6.78 4.45 6.26-2.26V1.9h3.52Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Social Media</a></li>
+        <li><a href="#services">Paid Advertising</a></li>
+        <li><a href="#services">Branding</a></li>
+        <li><a href="#services">Web Design</a></li>
+        <li><a href="#services">Content Creation</a></li>
+        <li><a href="#services">Video Editing</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#stats">Results</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="#consult">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col footer-contact">
+      <h5>Contact</h5>
+      <a href="https://wa.me/201233305201" target="_blank">
+        <span>💬</span> WhatsApp Us
+      </a>
+      <a href="mailto:hello@trixsagency">
+        <span>✉️</span> hello@trixsagency
+      </a>
+      <a href="#">
+        <span>📍</span> Ismailia, Egypt
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 <span>Trixs Marketing Agency</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .why-card, .service-card, .client-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); cursorRing.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); cursorRing.classList.remove('hover'); });
+  });
+
+  // ── NAV SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── HAMBURGER ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── REVEAL ON SCROLL ──
+  const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // trigger counter if stat
+        const numEl = e.target.querySelector('.stat-num[data-target]');
+        if (numEl) animateCounter(numEl);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ── COUNTER ANIMATION ──
+  function animateCounter(el) {
+    if (el.dataset.animated) return;
+    el.dataset.animated = true;
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const duration = 2000;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(eased * target);
+      el.textContent = prefix + (target >= 1000 ? current.toLocaleString() : current) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // Also observe stat items directly
+  document.querySelectorAll('.stat-item').forEach(item => {
+    const numEl = item.querySelector('.stat-num[data-target]');
+    if (!numEl) return;
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { animateCounter(numEl); obs.disconnect(); }
+    }, { threshold: 0.5 });
+    obs.observe(item);
+  });
+
+  // ── SMOOTH SCROLL ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── FORM SUBMIT ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = '✓ Sent! We\'ll be in touch shortly.';
+    btn.style.background = 'linear-gradient(135deg, #00D1D1, #00a8a8)';
+    setTimeout(() => {
+      btn.textContent = '✦ Get Free Consultation';
+      btn.style.background = '';
+      e.target.reset();
+    }, 4000);
+  }
+
+  // ── HERO TITLE ANIMATION ──
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      setTimeout(() => {
+        if (!el.classList.contains('visible')) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) el.classList.add('visible');
+        }
+      }, i * 80);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Trixs Marketing Agency portfolio projects." />
+  <title>Trixs Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #050607;
+      --dark: #0B0B0D;
+      --panel: #111318;
+      --cyan: #00D1D1;
+      --blue: #2D7FF9;
+      --white: #F0F2F5;
+      --gray: #8A8F9D;
+      --muted: #59606D;
+      --border: rgba(0,209,209,0.14);
+      --border-soft: rgba(255,255,255,0.09);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 14% 8%, rgba(0,209,209,0.10), transparent 26%),
+        radial-gradient(circle at 86% 10%, rgba(45,127,249,0.09), transparent 26%),
+        linear-gradient(180deg, #050607 0%, #0B0B0D 100%);
+      color: var(--white);
+      font-family: "Readex Pro", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,209,209,0.032) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,209,209,0.032) 1px, transparent 1px);
+      background-size: 58px 58px;
+      mask-image: radial-gradient(ellipse 70% 65% at 50% 12%, black 22%, transparent 100%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* NAV */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(5,6,7,0.72);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(0,209,209,0.10);
+    }
+
+    .nav-logo img {
+      width: 78px;
+      height: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray);
+    }
+
+    .nav-links a {
+      transition: .25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan);
+    }
+
+    .nav-cta {
+      padding: 12px 20px;
+      border-radius: 12px;
+      color: #071012;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 0 28px rgba(0,209,209,.25);
+      transition: .25s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 45px rgba(0,209,209,.42);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 84px 5% 54px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      right: 7%;
+      top: 45%;
+      width: min(420px, 32vw);
+      opacity: .035;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .category-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .category-label::before,
+    .category-label::after {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--cyan);
+      opacity: .8;
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 7.4vw, 118px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .italic {
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -.08em;
+      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--gray);
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(15px, 1.55vw, 19px);
+      line-height: 1.8;
+    }
+
+    /* CATEGORY TABS */
+    .tabs-wrap {
+      position: sticky;
+      top: 82px;
+      z-index: 45;
+      padding: 16px 5%;
+      background: linear-gradient(to bottom, rgba(5,6,7,.96), rgba(5,6,7,.74));
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+
+    .tabs {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,.045);
+      overflow-x: auto;
+    }
+
+    .tab {
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      color: var(--gray);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 12px 20px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: .25s ease;
+    }
+
+    .tab:hover {
+      color: var(--white);
+      border-color: rgba(0,209,209,.35);
+    }
+
+    .tab.active {
+      color: #071012;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      box-shadow: 0 0 30px rgba(0,209,209,.30);
+    }
+
+    /* PROJECTS */
+    .content {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 46px 5% 110px;
+    }
+
+    .project {
+      padding: 52px 0 70px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+
+    .project:first-child {
+      padding-top: 16px;
+    }
+
+    .project-head {
+      display: block;
+      margin-bottom: 32px;
+    }
+
+    .project-info h2 {
+      font-size: clamp(28px, 3.1vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -.055em;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+
+    .project-type {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .project-info p {
+      max-width: 860px;
+      color: var(--gray);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .design-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 24% 20%, rgba(0,209,209,.12), transparent 32%),
+        #07090B;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+    }
+
+    .design-item img,
+    .design-item video {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      display: block;
+      background: #000;
+    }
+
+    .design-item img {
+      cursor: zoom-in;
+    }
+
+    .design-item video {
+      cursor: default;
+    }
+
+    .design-item video:fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+      object-fit: contain !important;
+      background: #000 !important;
+    }
+
+    .design-item video:-webkit-full-screen {
+      width: 100vw !important;
+      height: 100vh !important;
+      object-fit: contain !important;
+      background: #000 !important;
+    }
+
+    .design-item:hover img,
+    .design-item:hover video {
+      transform: scale(1.035);
+    }
+
+    .design-item video {
+      background: #000;
+    }
+
+    .placeholder {
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.18);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 18px;
+    }
+
+    .empty-state {
+      padding: 90px 20px;
+      text-align: center;
+      border: 1px dashed rgba(0,209,209,.22);
+      border-radius: 24px;
+      background: rgba(255,255,255,.025);
+      color: var(--gray);
+    }
+
+    .empty-state h3 {
+      color: var(--white);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+
+    /* IMAGE LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(0,0,0,.92);
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 96vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 30px 120px rgba(0,0,0,.75);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 22px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(0,209,209,.16);
+      border-color: rgba(0,209,209,.35);
+    }
+
+    footer {
+      border-top: 1px solid rgba(0,209,209,.12);
+      padding: 38px 5%;
+      background: rgba(12,13,16,.78);
+      color: var(--gray);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer span {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    @media (max-width: 1100px) {
+      .design-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .navbar {
+        height: auto;
+        min-height: 76px;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 16px 5%;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .nav-cta {
+        padding: 10px 14px;
+      }
+
+      .tabs-wrap {
+        top: 122px;
+      }
+
+.design-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-logo img {
+        width: 64px;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .tabs-wrap {
+        position: relative;
+        top: auto;
+      }
+
+      .tabs {
+        width: 100%;
+        border-radius: 18px;
+      }
+
+      .tab {
+        flex: 1 0 auto;
+      }
+
+      .content {
+        padding-top: 28px;
+      }
+
+      .design-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        padding: 42px 0 58px;
+      }
+    }
+  
+    /* Hide project metadata under client names */
+    .project-type,
+    .project-info p {
+      display: none !important;
+    }
+
+    .project-head {
+      margin-bottom: 28px;
+    }
+
+  
+    .project.no-title {
+      padding-top: 16px;
+    }
+
+    .project.no-title .design-grid {
+      margin-top: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo" aria-label="Trixs Home">
+        <img src="trixs-logo.png" alt="Trixs Logo">
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="portfolio.html" class="active">Works</a>
+        <a href="index.html#why">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#consult">Contact</a>
+      </div>
+
+      <a href="https://wa.me/201233305201" class="nav-cta" target="_blank">Contact Us</a>
+    </nav>
+
+    <header class="hero">
+      <img src="trixs-logo.png" class="hero-watermark" alt="">
+      <div class="category-label">Category</div>
+      <h1 id="pageTitle">Social <span class="italic">Media</span></h1>
+      <p id="pageDescription">A curated collection of medical social media projects, each presented with its full design set in clean square grids.</p>
+    </header>
+
+    <div class="tabs-wrap">
+      <div class="tabs">
+        <button class="tab active" data-category="social-media">Social Media Designs</button>
+        <button class="tab" data-category="branding">Branding</button>
+        <button class="tab" data-category="videos">Videos</button>
+      </div>
+    </div>
+
+    <main class="content" id="projectsContainer"></main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+      <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <footer>
+      © 2026 <span>Trixs Marketing Agency</span>. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    /*
+      طريقة إضافة مشروع جديد:
+      - افتح data بالأسفل.
+      - ضيف project جديد داخل category المطلوبة.
+      - الصور والفيديوهات هتظهر Fit بالمقاس الأصلي بدون قص؛ المربع مش إجباري.
+      - حط الصور في فولدر projects جنب ملف portfolio.html.
+
+      أمثلة مسارات:
+      Social:
+      projects/social/client-1/1.png
+      projects/social/client-1/2.png
+      projects/social/client-1/3.png
+      projects/social/client-1/4.png
+
+      Branding:
+      projects/branding/clinic-brand-01.png
+      projects/branding/clinic-brand-02.png
+      ...
+      projects/branding/clinic-brand-08.png
+
+      Videos:
+      projects/videos/video-01.mp4
+      projects/videos/video-02.mp4
+      ...
+      projects/videos/video-12.mp4
+    */
+
+    const data = {
+      "social-media": {
+        title: 'Social <span class="italic">Media</span>',
+        description: "A curated collection of medical social media projects, each presented with its full design set in clean square grids.",
+        projects: [
+          {
+            client: "Dr. Mahmoud Nasser",
+            designs: [
+              "projects/social/mahmoud-nasser-01.jpg",
+              "projects/social/mahmoud-nasser-02.jpg",
+              "projects/social/mahmoud-nasser-03.jpg",
+              "projects/social/mahmoud-nasser-04.jpg",
+
+            ]
+          },
+          {
+            client: "El Masa Hospital",
+            designs: [
+              "projects/social/elmasa-01.jpg",
+              "projects/social/elmasa-02.jpg",
+              "projects/social/elmasa-03.jpg",
+              "projects/social/elmasa-04.jpg",
+
+            ]
+          },
+          {
+            client: "Dr. Diaa Elsayed",
+            designs: [
+              "projects/social/client-1/1.png",
+              "projects/social/client-1/2.png",
+              "projects/social/client-1/3.png",
+              "projects/social/client-1/4.png"
+            ]
+          },
+          {
+            client: "Dr. Hossam Hamed",
+            designs: [
+              "projects/social/client-2/1.png",
+              "projects/social/client-2/2.png",
+              "projects/social/client-2/3.png",
+              "projects/social/client-2/4.png"
+            ]
+          },
+          {
+            client: "Dr. Ahmed Abdelghany",
+            designs: [
+              "projects/social/client-3/1.png",
+              "projects/social/client-3/2.png",
+              "projects/social/client-3/3.png",
+              "projects/social/client-3/4.png"
+            ]
+          },
+          {
+            client: "Dr. Ahmed Adel",
+            designs: [
+              "projects/social/client-4/1.png",
+              "projects/social/client-4/2.png",
+              "projects/social/client-4/3.png",
+              "projects/social/client-4/4.png"
+            ]
+          },
+          {
+            client: "Dr. Abdallah Salah",
+            designs: [
+              "projects/social/client-5/1.png",
+              "projects/social/client-5/2.png",
+              "projects/social/client-5/3.png",
+              "projects/social/client-5/4.png"
+            ]
+          }
+
+        ]
+      },
+
+      "branding": {
+        title: 'Branding',
+        description: "Brand identity systems, logo directions, color palettes, and premium medical visual guidelines.",
+        projects: [
+          {
+            client: "",
+            designs: [
+              "projects/branding/clinic-brand-01.png",
+              "projects/branding/clinic-brand-02.png",
+              "projects/branding/clinic-brand-03.png",
+              "projects/branding/clinic-brand-04.png",
+              "projects/branding/clinic-brand-05.png",
+              "projects/branding/clinic-brand-06.png",
+              "projects/branding/clinic-brand-07.png",
+              "projects/branding/clinic-brand-08.png"
+            ]
+          }
+        ]
+      },
+
+      "videos": {
+        title: 'Videos',
+        description: "Reels, campaign videos, cinematic edits, and short-form content for medical brands and doctors.",
+        projects: [
+          {
+            client: "",
+            videos: [
+              "projects/videos/video-01.mp4",
+              "projects/videos/video-02.mp4",
+              "projects/videos/video-03.mp4",
+              "projects/videos/video-04.mp4",
+              "projects/videos/video-05.mp4",
+              "projects/videos/video-06.mp4",
+              "projects/videos/video-07.mp4",
+              "projects/videos/video-08.mp4",
+              "projects/videos/video-09.mp4",
+              "projects/videos/video-10.mp4",
+              "projects/videos/video-11.mp4",
+              "projects/videos/video-12.mp4"
+            ]
+          }
+        ]
+      }
+    };
+
+    const container = document.getElementById("projectsContainer");
+    const pageTitle = document.getElementById("pageTitle");
+    const pageDescription = document.getElementById("pageDescription");
+    const tabs = document.querySelectorAll(".tab");
+
+    function getCategoryFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get("category");
+      if (category && data[category]) return category;
+      return "social-media";
+    }
+
+    function imageExistsFallback(img) {
+      img.onerror = () => {
+        const wrapper = img.closest(".design-item");
+        if (!wrapper) return;
+        wrapper.innerHTML = `<div class="placeholder">Add Design<br>${img.getAttribute("src")}</div>`;
+      };
+    }
+
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || "";
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = "";
+      document.body.style.overflow = "";
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+    });
+
+    function renderCategory(category) {
+      const categoryData = data[category];
+
+      pageTitle.innerHTML = categoryData.title;
+      pageDescription.textContent = categoryData.description;
+
+      tabs.forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.category === category);
+      });
+
+      if (!categoryData.projects.length) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h3>No projects yet</h3>
+            <p>Add projects inside the data object in this file.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = categoryData.projects.map(project => {
+        const items = project.videos || project.designs || [];
+        const isVideo = !!project.videos;
+
+        return `
+          <section class="project ${project.client ? '' : 'no-title'}">
+            ${project.client ? `
+              <div class="project-head">
+                <div class="project-info">
+                  <h2>${project.client}</h2>
+                </div>
+              </div>
+            ` : ''}
+
+            <div class="design-grid">
+              ${items.map(src => `
+                <div class="design-item">
+                  ${
+                    isVideo
+                      ? `<video src="${src}" controls muted playsinline preload="metadata"></video>`
+                      : `<img src="${src}" alt="${project.client} Design" loading="lazy" onclick="openLightbox('${src}', '${project.client} Design')">`
+                  }
+                </div>
+              `).join("")}
+            </div>
+          </section>
+        `;
+      }).join("");
+
+      document.querySelectorAll(".design-item img").forEach(imageExistsFallback);
+
+      const newUrl = `portfolio.html?category=${category}`;
+      window.history.replaceState({}, "", newUrl);
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        renderCategory(tab.dataset.category);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+
+    renderCategory(getCategoryFromUrl());
+  </script>
+</body>
+</html>
